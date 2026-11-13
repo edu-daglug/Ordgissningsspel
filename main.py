@@ -16,16 +16,19 @@ while True:
     while felkvar != 0:
         while True:
             spelarensval = input("\nAnge en gisning ->").lower()
-        
             if spelarensval in spelarval:
                 break  
+            
             elif spelarensval in spelarval_ny:
                 print("Du har redan gissat på den bokstaven, välj en annan.")
+            
             else:
                 print("ogiltig gisning")
+        
         spelarval.remove(spelarensval)
         if spelarensval in datorval:
             print(f"\nDu gissade rätt på bokstaven {spelarensval}")
+            
             for i in range(len(datorval)):
                 if datorval[i] == spelarensval:
                     ord_fyllt[i] = spelarensval
@@ -38,12 +41,21 @@ while True:
         print(f"Du har nu {felkvar} st. felgisningar kvar")
         print(f"Felgissningar: {' '.join(felgisningar)}")
         print(f"Rätt gissade bokstäver: {' '.join(ord_fyllt)}")
+        
         if ord_fyllt == datorval_bokstav:
             print(f"Grattis! Du gissade rätt på ordet {datorval}")
             break
+        
         elif felkvar == 0:
             print(f"Tyvärr, du har inga gissningar kvar. Ordet var {datorval}")
-    igen = input("\nVill du spela en gång till? j/n ->").lower()
+    säker_inmatning_sluta = ["j", "n"]
+    
+    while True:
+        igen = input("\nVill du spela en gång till? j/n ->").lower()
+        if igen in säker_inmatning_sluta:
+            break
+        else:
+            print("Ogiltig inmatning, ange j eller n")
     if igen == "n":
         break
     elif igen == "j":
